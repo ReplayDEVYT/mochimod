@@ -1,2 +1,2 @@
-# mochimod
- Mod loader for MetaWare High School (Demo).
+# Introduction
+MochiMod is a mod loader specifically made for [MetaWare High School (Demo)](https://store.steampowered.com/app/1194740/MetaWare_High_School_Demo/). It could theoretically be used for other Ren'Py based games but I haven't done enough research into that yet to be honest. 
