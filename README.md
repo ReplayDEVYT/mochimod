@@ -46,7 +46,7 @@ After you do this, delete the three .rpa files you have left over, as well as rp
 <img src=".github/images/rpa extract in action.gif"/>
 <h1> Step 4</h1>
 <p>Go back to Ren'Py and click the refresh button near the projects list on the left if MetaWare High School (Demo) isn't appearing in the projects list. If it <i>is</i>, good job for making it this far! You can now modify this copy of MetaWare however much you'd like before proceeding to Step 5.<br><br>
-<img src=".github/images/metaware in projects.png"/>
+<img src=".github/images/metaware in projects.PNG"/>
 
 It was the first thing that came to mind, so I replaced all of the character icon with Nathaniel Bandy's PFP. I'm sorry.<br><br>
 <img src=".github/images/holdupaintyounathanielb.png"/>
