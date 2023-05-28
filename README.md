@@ -1,10 +1,10 @@
 # Introduction
-<p>MochiMod is a mod loader specifically made for [MetaWare High School (Demo)](https://store.steampowered.com/app/1194740/MetaWare_High_School_Demo/).
+<p>MochiMod is a mod loader specifically made for <a href="https://not-fun-games.itch.io/metaware-high-school">MetaWare High School (Demo)</a>.
 
 ***
 
 ### You will need the following.
-* Unmodified copy of [MetaWare High School (Demo)](https://not-fun-games.itch.io/metaware-high-school)
+* Unmodified copy of <a href="https://not-fun-games.itch.io/metaware-high-school">MetaWare High School (Demo)</a>
 * [Renpy 7.5.0.22062402](https://github.com/renpy/renpy/releases/tag/7.5.0.22062402)
 * [RPA Extract](https://iwanplays.itch.io/rpaex)
 
