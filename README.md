@@ -10,7 +10,7 @@ If you just want to use the launcher, and have no intention of modding the game,
 
 If you'd like to create modpacks, you will need to download two extra programs, as well as the [modpack template](.github/zips/ModpackTemplate.zip) from MochiMod's GitHub repository.
 
-* [Ren'Py 7.5.0.22062402](https://github.com/renpy/renpy/releases/tag/7.5.0.22062402)
+* [Ren'Py 7.2.2](https://www.renpy.org/release/7.2.2)
 * [RPA Extract](https://iwanplays.itch.io/rpaex)
 
 ***
