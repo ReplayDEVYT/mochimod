@@ -82,85 +82,94 @@ public class ModLoaderScript : MonoBehaviour
 
         loadedHowMany.gameObject.SetActive(false);
 
-        string modsFolderDirectory = System.IO.Path.Combine(gamePathField.text, "mods");
-        if(!System.IO.Directory.Exists(modsFolderDirectory))
+        if(!System.IO.Directory.Exists(gamePathField.text))
         {
-            warningDirecPrompt.SetActive(true);
-        } else {
-            warningDirecPrompt.SetActive(false);   
-    
-            DirectoryInfo modPath = new DirectoryInfo(modsFolderDirectory);
-            DirectoryInfo[] modDirs = modPath.GetDirectories("*.*");
-       
-            foreach (DirectoryInfo dir in modDirs)
+            existNotif.gameObject.SetActive(true);
+            warningDirecPrompt.SetActive(false);
+        } 
+        else
+        {
+            existNotif.gameObject.SetActive(false);
+            
+            string modsFolderDirectory = System.IO.Path.Combine(gamePathField.text, "mods");
+            if(!System.IO.Directory.Exists(modsFolderDirectory))
             {
-                //print(dir);
-                GameObject newMod = Instantiate(baseModItem, gridLayout);
-                newMod.SetActive(true);
-                newMod.name = "new mod";
-
-                //set icon
-                newMod.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = LoadSprite(dir + "\\_icon.png");
-                newMod.GetComponent<ListedModScript>().pathAwesome = dir.ToString();
-                newMod.GetComponent<ListedModScript>().modFolder = dir;
-                newMod.GetComponent<Image>().color = PlayerPrefsExtra.GetColor("UIColor");
-                
-                //load info json
-                if (System.IO.File.Exists(dir + "\\_info.json"))
+                warningDirecPrompt.SetActive(true);
+            } else {
+                warningDirecPrompt.SetActive(false);   
+        
+                DirectoryInfo modPath = new DirectoryInfo(modsFolderDirectory);
+                DirectoryInfo[] modDirs = modPath.GetDirectories("*.*");
+        
+                foreach (DirectoryInfo dir in modDirs)
                 {
-                    rawJsonString = File.ReadAllText(dir + "\\_info.json");
-                    modInfo = JsonUtility.FromJson<ModJSON>(rawJsonString);
+                    //print(dir);
+                    GameObject newMod = Instantiate(baseModItem, gridLayout);
+                    newMod.SetActive(true);
+                    newMod.name = "new mod";
 
-                    //set info json
-                    if (modInfo.name != "")
+                    //set icon
+                    newMod.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = LoadSprite(dir + "\\_icon.png");
+                    newMod.GetComponent<ListedModScript>().pathAwesome = dir.ToString();
+                    newMod.GetComponent<ListedModScript>().modFolder = dir;
+                    newMod.GetComponent<Image>().color = PlayerPrefsExtra.GetColor("UIColor");
+                    
+                    //load info json
+                    if (System.IO.File.Exists(dir + "\\_info.json"))
                     {
-                        newMod.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = modInfo.name;
-                    }
-                    else
+                        rawJsonString = File.ReadAllText(dir + "\\_info.json");
+                        modInfo = JsonUtility.FromJson<ModJSON>(rawJsonString);
+
+                        //set info json
+                        if (modInfo.name != "")
+                        {
+                            newMod.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = modInfo.name;
+                        }
+                        else
+                        {
+                            newMod.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "UNKNOWN MODPACK";
+                            newMod.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0f, 1f);
+                        }
+
+                        if (modInfo.author != "")
+                        {
+                            newMod.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "by " + modInfo.author;
+
+                        }
+                        else
+                        {
+                            newMod.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "";
+                            newMod.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0f, 1f);
+                        }
+
+                        if (modInfo.description != "")
+                        {
+                            newMod.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = modInfo.description;
+                        }                   
+                        else
+                        {
+                            newMod.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = "N/A";
+                            newMod.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0f, 1f);
+                        }
+                    } 
+                    else 
                     {
                         newMod.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "UNKNOWN MODPACK";
-                        newMod.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0f, 1f);
-                    }
-
-                    if (modInfo.author != "")
-                    {
-                        newMod.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "by " + modInfo.author;
-
-                    }
-                    else
-                    {
                         newMod.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "";
-                        newMod.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0f, 1f);
-                    }
-
-                    if (modInfo.description != "")
-                    {
-                        newMod.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = modInfo.description;
-                    }                   
-                    else
-                    {
                         newMod.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = "N/A";
-                        newMod.GetComponent<Image>().color = new Color(0.75f, 0.75f, 0f, 1f);
+                        newMod.GetComponent<Image>().color = new Color(0.75f, 0f, 0f, 1f);
                     }
-                } 
-                else 
-                {
-                    newMod.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "UNKNOWN MODPACK";
-                    newMod.transform.GetChild(0).GetChild(0).GetChild(0).gameObject.GetComponent<Text>().text = "";
-                    newMod.transform.GetChild(0).GetChild(0).GetChild(1).gameObject.GetComponent<Text>().text = "N/A";
-                    newMod.GetComponent<Image>().color = new Color(0.75f, 0f, 0f, 1f);
                 }
+                
+                watch.Stop();
+                loadedHowMany.text = "LOADED " + modDirs.Length + " MODS IN " + (watch.ElapsedMilliseconds).ToString() + " MS";
+                loadedHowMany.gameObject.SetActive(true);
+                funnyTime = 0;
+
+                //reset mod directories
+                modDirs = null;
             }
-            
-            watch.Stop();
-            loadedHowMany.text = "LOADED " + modDirs.Length + " MODS IN " + (watch.ElapsedMilliseconds).ToString() + " MS";
-            loadedHowMany.gameObject.SetActive(true);
-            funnyTime = 0;
-
-            //reset mod directories
-            modDirs = null;
         }
-
     }
 
     private Sprite LoadSprite(string path)
@@ -243,6 +252,12 @@ public class ModLoaderScript : MonoBehaviour
         launchPanel.gameObject.SetActive(false);
         loaderPanel.gameObject.SetActive(true);
     }
+
+    public void PathNotExist()
+    {
+        notifPanel.SetActive(true);
+        notifText.text = "This directory does not exist, or is not a valid copy of MetaWare High School (Demo).";
+    }
     
     //open github
     public void openGithub()
@@ -278,7 +293,7 @@ public class ModLoaderScript : MonoBehaviour
     public Button playMod, refreshList, github, settings, createModsButton;
     public InputField gamePathField;
     public GameObject warningDirecPrompt, baseModItem, notifPanel;
-    public Image launchBarFill;
+    public Image launchBarFill, existNotif;
     public string selFolder;
 
     public GameObject[] coloredStuff;
