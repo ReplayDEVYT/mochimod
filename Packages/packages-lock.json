@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.libsm64.libsm64-unity": {
+      "version": "file:E:/Downloads/libsm64-unity-master",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.2d.animation": {
       "version": "7.0.9",
       "depth": 1,
