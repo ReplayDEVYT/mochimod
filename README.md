@@ -4,7 +4,7 @@
 ***
 
 ### You will need the following.
-If you just want to use the launcher, and have no intention of modding the game, you'll only need to downloa a fresh copy of MetaWare.
+If you just want to use the launcher, and have no intention of modding the game, you'll only need to download a fresh copy of MetaWare.
 
 * Unmodified copy of <a href="https://not-fun-games.itch.io/metaware-high-school">MetaWare High School (Demo)</a>
 
